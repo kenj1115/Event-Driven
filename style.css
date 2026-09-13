@@ -1,0 +1,252 @@
+:root {
+  --ink: #14151a;
+  --panel: #1c1e24;
+  --panel-raised: #23252c;
+  --text: #ecece4;
+  --muted: #8b8e98;
+  --amber: #e8a23d;
+  --teal: #4fb8a6;
+  --border: rgba(255, 255, 255, 0.08);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* The assignment's theme-toggle button should add/remove this class on <body> */
+body.light-mode {
+  --ink: #f3f1ea;
+  --panel: #ffffff;
+  --panel-raised: #fbfaf6;
+  --text: #1c1e24;
+  --muted: #5c5f68;
+  --border: rgba(0, 0, 0, 0.09);
+}
+
+.kiosk {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+.hero {
+  margin-bottom: 56px;
+}
+
+.hero__kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--amber);
+  margin: 0 0 12px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 5vw, 38px);
+  line-height: 1.2;
+  margin: 0 0 16px;
+  max-width: 20ch;
+}
+
+.hero__sub {
+  color: var(--muted);
+  max-width: 46ch;
+  margin: 0;
+}
+
+#loadTimestamp {
+  font-family: var(--font-mono);
+  color: var(--teal);
+}
+
+.module {
+  display: flex;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.module__bar {
+  width: 4px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+
+#hoverModule .module__bar { background: var(--teal); }
+#dragModule .module__bar { background: var(--teal); }
+#disableModule .module__bar { background: #d9634c; }
+
+.module__body {
+  padding: 24px 28px;
+  width: 100%;
+}
+
+.module__body h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  margin: 0 0 6px;
+}
+
+.module__hint {
+  color: var(--muted);
+  font-size: 13.5px;
+  margin: 0 0 16px;
+}
+
+.module__hint code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--amber);
+  border: none;
+  padding: 11px 20px;
+  cursor: pointer;
+}
+
+.btn:hover { filter: brightness(1.08); }
+.btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+.btn--warn {
+  background: transparent;
+  color: #d9634c;
+  border: 1px solid #d9634c;
+}
+
+.btn:disabled {
+  background: var(--panel-raised);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  cursor: not-allowed;
+}
+
+.hover-card {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  cursor: default;
+}
+
+.hover-card p { margin: 0; }
+
+.hover-card__detail {
+  margin-top: 10px !important;
+  font-size: 13.5px;
+  color: var(--muted);
+  /* Toggle this with your mouseover/mouseout handler, e.g. via a class or display style */
+  display: none;
+}
+
+textarea, input[type="text"], input[type="email"] {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.readout {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+
+#searchInput { margin-bottom: 14px; }
+
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item-list li {
+  font-size: 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.item-list li:last-child { border-bottom: none; }
+
+/* Give hidden (filtered-out) items this class from your input handler */
+.item-list li.is-hidden {
+  display: none;
+}
+
+form label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+form input {
+  margin-bottom: 14px;
+}
+
+.drag-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.drag-chip {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--teal);
+  padding: 14px 18px;
+  cursor: grab;
+  user-select: none;
+}
+
+.drop-zone {
+  flex: 1;
+  min-width: 180px;
+  font-size: 13.5px;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  padding: 18px;
+  text-align: center;
+}
+
+/* Add this class from your drop handler to show a successful badge-in */
+.drop-zone.is-active {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+@media (max-width: 480px) {
+  .kiosk { padding: 40px 18px 72px; }
+  .module__body { padding: 20px; }
+}
